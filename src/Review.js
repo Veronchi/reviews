@@ -6,19 +6,20 @@ const Review = () => {
   const peopleData = people;
   const [person, setPerson] = useState(peopleData[0]);
 
-  // const prevPerson = () => {
+  const prevPerson = (personId) => {
+    let peopleDataId = personId - 1;
+    let lastIndex = peopleData.length - 1;
 
-  // }
+    if (peopleDataId === 0) setPerson(peopleData[lastIndex]);
+    else setPerson(peopleData[peopleDataId - 1])
+  }
 
   const nextPerson = (personId) => {
     let peopleDataId = personId - 1;
+    let lastPerson = peopleData.length;
 
-    if (personId <= 3) {
-      setPerson(peopleData[peopleDataId + 1]);
-    }
-    if (personId === 4) {
-      setPerson(peopleData[0]);
-    }
+    if (personId === lastPerson) setPerson(peopleData[0]);
+    else setPerson(peopleData[peopleDataId + 1]);
   }
 
   // const randomPerson = () => {
