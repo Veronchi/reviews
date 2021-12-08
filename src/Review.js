@@ -22,9 +22,18 @@ const Review = () => {
     else setPerson(peopleData[peopleDataId + 1]);
   }
 
-  // const randomPerson = () => {
-  //   Math.floor(Math.random() * max);
-  // }
+  const randomPerson = (personId) => {
+    let peopleDataId = personId - 1;
+    let maxNumOfArr = peopleData.length;
+    let randomPersonId = Math.floor(Math.random() * maxNumOfArr);
+
+    if (randomPersonId === peopleDataId) {
+      randomPerson(personId)
+    } else {
+      setPerson(peopleData[randomPersonId]);
+    }
+
+  }
 
   return (
     <article key={person.id} className="review">
@@ -45,7 +54,7 @@ const Review = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className="random-btn" onClick={() => { console.log(3) }}>surprise me</button>
+      <button className="random-btn" onClick={() => randomPerson(person.id)}>surprise me</button>
     </article>
   )
 
